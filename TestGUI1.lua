@@ -5,7 +5,7 @@ local Library = {}
 local TweenService = game:GetService("TweenService")
 local UserInputService = game:GetService("UserInputService")
 
--- Hàm tạo cửa sổ chính
+-- Hàm tạo cửa sổ chính (giữ nguyên)
 function Library:MakeWindow(options)
     if not options then
         error("Options không được cung cấp cho MakeWindow")
@@ -14,7 +14,6 @@ function Library:MakeWindow(options)
     local hub = options.Hub or {}
     local key = options.Key or {}
     
-    -- Kiểm tra an toàn cho LocalPlayer
     local player = game.Players.LocalPlayer
     if not player then
         error("LocalPlayer không tồn tại")
@@ -32,17 +31,15 @@ function Library:MakeWindow(options)
     local mainFrame = Instance.new("Frame")
     mainFrame.Name = "MainFrame"
     mainFrame.Parent = screenGui
-    mainFrame.Size = UDim2.new(0, 500, 0, 350) -- Kích thước giống Redz Hub
+    mainFrame.Size = UDim2.new(0, 500, 0, 350)
     mainFrame.Position = UDim2.new(0.5, -250, 0.5, -175)
-    mainFrame.BackgroundColor3 = Color3.fromRGB(25, 25, 25) -- Màu nền xám đậm
+    mainFrame.BackgroundColor3 = Color3.fromRGB(25, 25, 25)
     mainFrame.BorderSizePixel = 0
     
-    -- Hiệu ứng mở GUI
     mainFrame.Size = UDim2.new(0, 0, 0, 0)
     local openTween = TweenService:Create(mainFrame, TweenInfo.new(0.5, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {Size = UDim2.new(0, 500, 0, 350)})
     openTween:Play()
     
-    -- Hỗ trợ kéo thả GUI
     local dragging, dragInput, dragStart, startPos
     mainFrame.InputBegan:Connect(function(input)
         if input.UserInputType == Enum.UserInputType.MouseButton1 then
@@ -72,7 +69,7 @@ function Library:MakeWindow(options)
     topBar.Name = "TopBar"
     topBar.Parent = mainFrame
     topBar.Size = UDim2.new(1, 0, 0, 30)
-    topBar.BackgroundColor3 = Color3.fromRGB(15, 15, 15) -- Màu đen đậm
+    topBar.BackgroundColor3 = Color3.fromRGB(15, 15, 15)
     topBar.BorderSizePixel = 0
     
     local titleLabel = Instance.new("TextLabel")
@@ -81,7 +78,7 @@ function Library:MakeWindow(options)
     titleLabel.Size = UDim2.new(1, -60, 1, 0)
     titleLabel.Position = UDim2.new(0, 5, 0, 0)
     titleLabel.Text = hub.Title or "Redz Hub"
-    titleLabel.TextColor3 = Color3.fromRGB(255, 255, 255) -- Màu trắng
+    titleLabel.TextColor3 = Color3.fromRGB(255, 255, 255)
     titleLabel.BackgroundTransparency = 1
     titleLabel.TextSize = 14
     titleLabel.Font = Enum.Font.SourceSansBold
@@ -92,7 +89,7 @@ function Library:MakeWindow(options)
     tabContainer.Parent = mainFrame
     tabContainer.Size = UDim2.new(0, 120, 1, -30)
     tabContainer.Position = UDim2.new(0, 0, 0, 30)
-    tabContainer.BackgroundColor3 = Color3.fromRGB(15, 15, 15) -- Màu đen đậm
+    tabContainer.BackgroundColor3 = Color3.fromRGB(15, 15, 15)
     tabContainer.BorderSizePixel = 0
     
     local contentContainer = Instance.new("Frame")
@@ -100,7 +97,7 @@ function Library:MakeWindow(options)
     contentContainer.Parent = mainFrame
     contentContainer.Size = UDim2.new(1, -120, 1, -30)
     contentContainer.Position = UDim2.new(0, 120, 0, 30)
-    contentContainer.BackgroundColor3 = Color3.fromRGB(20, 20, 20) -- Màu xám đậm
+    contentContainer.BackgroundColor3 = Color3.fromRGB(20, 20, 20)
     contentContainer.BorderSizePixel = 0
     
     local uiListLayout = Instance.new("UIListLayout")
@@ -187,7 +184,7 @@ function Library:MakeWindow(options)
     return windowData
 end
 
--- Hàm tạo tab
+-- Hàm tạo tab (giữ nguyên)
 function Library:MakeTab(options)
     if not options or not options.Window then
         error("Options hoặc Window không được cung cấp cho MakeTab")
@@ -201,8 +198,8 @@ function Library:MakeTab(options)
     tabButton.Size = UDim2.new(1, -10, 0, 30)
     tabButton.Position = UDim2.new(0, 5, 0, 5 + (#options.Window.Tabs * 35))
     tabButton.Text = name
-    tabButton.TextColor3 = Color3.fromRGB(255, 255, 255) -- Màu trắng
-    tabButton.BackgroundColor3 = Color3.fromRGB(30, 30, 30) -- Màu xám đậm
+    tabButton.TextColor3 = Color3.fromRGB(255, 255, 255)
+    tabButton.BackgroundColor3 = Color3.fromRGB(30, 30, 30)
     tabButton.Font = Enum.Font.SourceSans
     tabButton.TextSize = 14
     tabButton.BorderSizePixel = 0
@@ -211,7 +208,6 @@ function Library:MakeTab(options)
     uiCorner.CornerRadius = UDim.new(0, 5)
     uiCorner.Parent = tabButton
     
-    -- Thêm hiệu ứng hover
     local originalColor = tabButton.BackgroundColor3
     tabButton.MouseEnter:Connect(function()
         tabButton.BackgroundColor3 = Color3.fromRGB(50, 50, 50)
@@ -227,14 +223,13 @@ function Library:MakeTab(options)
     tabFrame.BackgroundTransparency = 1
     tabFrame.Visible = false
     tabFrame.ScrollBarThickness = 5
-    tabFrame.CanvasSize = UDim2.new(0, 0, 0, 0) -- Sẽ tự động điều chỉnh
+    tabFrame.CanvasSize = UDim2.new(0, 0, 0, 0)
     tabFrame.ScrollBarImageColor3 = Color3.fromRGB(100, 100, 100)
     
     local uiListLayout = Instance.new("UIListLayout")
     uiListLayout.Parent = tabFrame
     uiListLayout.Padding = UDim.new(0, 5)
     
-    -- Thêm padding cho nội dung tab
     local uiPadding = Instance.new("UIPadding")
     uiPadding.Parent = tabFrame
     uiPadding.PaddingLeft = UDim.new(0, 10)
@@ -242,9 +237,8 @@ function Library:MakeTab(options)
     uiPadding.PaddingTop = UDim.new(0, 10)
     uiPadding.PaddingBottom = UDim.new(0, 10)
     
-    -- Tự động cập nhật CanvasSize khi nội dung thay đổi
     uiListLayout:GetPropertyChangedSignal("AbsoluteContentSize"):Connect(function()
-        tabFrame.CanvasSize = UDim2.new(0, 0, 0, uiListLayout.AbsoluteContentSize.Y + 20) -- Thêm 20 để có khoảng trống dưới cùng
+        tabFrame.CanvasSize = UDim2.new(0, 0, 0, uiListLayout.AbsoluteContentSize.Y + 20)
     end)
     
     tabButton.MouseButton1Click:Connect(function()
@@ -272,7 +266,7 @@ function Library:MakeTab(options)
     return tabFrame
 end
 
--- Hàm thêm toggle
+-- Hàm thêm toggle (giữ nguyên)
 function Library:AddToggle(tab, options)
     if not tab or not options then
         error("Tab hoặc Options không được cung cấp cho AddToggle")
@@ -313,7 +307,7 @@ function Library:AddToggle(tab, options)
     toggleButton.BorderSizePixel = 0
     
     local uiCornerButton = Instance.new("UICorner")
-    uiCornerButton.CornerRadius = UDim.new(1, 0) -- Hình tròn
+    uiCornerButton.CornerRadius = UDim.new(1, 0)
     uiCornerButton.Parent = toggleButton
     
     local state = default
@@ -326,7 +320,7 @@ function Library:AddToggle(tab, options)
     return toggleFrame
 end
 
--- Hàm thêm button
+-- Hàm thêm button (giữ nguyên)
 function Library:AddButton(tab, options)
     if not tab or not options then
         error("Tab hoặc Options không được cung cấp cho AddButton")
@@ -350,7 +344,6 @@ function Library:AddButton(tab, options)
     uiCorner.CornerRadius = UDim.new(0, 5)
     uiCorner.Parent = button
     
-    -- Thêm hiệu ứng hover
     local originalColor = button.BackgroundColor3
     button.MouseEnter:Connect(function()
         button.BackgroundColor3 = Color3.fromRGB(50, 50, 50)
@@ -366,7 +359,7 @@ function Library:AddButton(tab, options)
     return button
 end
 
--- Hàm thêm dropdown
+-- Hàm thêm dropdown (giữ nguyên)
 function Library:AddDropdown(tab, options)
     if not tab or not options then
         error("Tab hoặc Options không được cung cấp cho AddDropdown")
@@ -428,7 +421,6 @@ function Library:AddDropdown(tab, options)
         uiCornerOpt.CornerRadius = UDim.new(0, 5)
         uiCornerOpt.Parent = optionButton
         
-        -- Hiệu ứng hover cho option button
         local optOriginalColor = optionButton.BackgroundColor3
         optionButton.MouseEnter:Connect(function()
             optionButton.BackgroundColor3 = Color3.fromRGB(50, 50, 50)
@@ -451,7 +443,7 @@ function Library:AddDropdown(tab, options)
     return dropdownFrame
 end
 
--- Hàm thêm slider (dựa trên yêu cầu từ hình ảnh)
+-- Hàm thêm slider (giữ nguyên)
 function Library:AddSlider(tab, options)
     if not tab or not options then
         error("Tab hoặc Options không được cung cấp cho AddSlider")
@@ -546,7 +538,7 @@ function Library:AddSlider(tab, options)
             local trackAbsSize = sliderTrack.AbsoluteSize.X
             local relativePos = math.clamp((mouseX - trackAbsPos) / trackAbsSize, 0, 1)
             local value = min + (max - min) * relativePos
-            value = math.floor(value + 0.5) -- Làm tròn
+            value = math.floor(value + 0.5)
             sliderFill.Size = UDim2.new(relativePos, 0, 1, 0)
             sliderButton.Position = UDim2.new(relativePos, -5, 0, -2.5)
             sliderValue.Text = tostring(value)
@@ -557,27 +549,27 @@ function Library:AddSlider(tab, options)
     return sliderFrame
 end
 
--- Hàm MinimizeButton (và nút Close) với kích thước lớn hơn
+-- Hàm MinimizeButton (cập nhật để nằm ngoài GUI và chỉ đóng/mở)
 function Library:MinimizeButton(options)
     if not options or not options.Window then
         error("Options hoặc Window không được cung cấp cho MinimizeButton")
     end
 
-    local minimizeImage = options.Image or "http://www.roblox.com/asset/?id=6023426926" -- Hình minimize
-    local closeImage = "http://www.roblox.com/asset/?id=6023426915" -- Hình close
-    local size = options.Size or {30, 30} -- Kích thước lớn hơn (30x30)
-    local color = options.Color or Color3.fromRGB(70, 20, 20) -- Màu đỏ đậm giống Redz Hub
+    local minimizeImage = options.Image or "http://www.roblox.com/asset/?id=136495663671275"
+    local closeImage = "http://www.roblox.com/asset/?id=6023426915"
+    local size = options.Size or {30, 30}
+    local color = options.Color or Color3.fromRGB(70, 20, 20)
     local corner = options.Corner or true
     local stroke = options.Stroke or false
     local strokeColor = options.StrokeColor or Color3.fromRGB(255, 0, 0)
     local window = options.Window
     
-    -- Nút Minimize
+    -- Nút Minimize (nằm ngoài GUI, ở góc trên bên phải)
     local minimizeButton = Instance.new("ImageButton")
     minimizeButton.Name = "MinimizeButton"
-    minimizeButton.Parent = window.MainFrame
+    minimizeButton.Parent = window.ScreenGui
     minimizeButton.Size = UDim2.new(0, size[1], 0, size[2])
-    minimizeButton.Position = UDim2.new(1, -65, 0, 5) -- Điều chỉnh vị trí để phù hợp với kích thước lớn hơn
+    minimizeButton.Position = UDim2.new(0, 500 - 30, 0, 5) -- Vị trí bên phải ngoài GUI
     minimizeButton.BackgroundColor3 = color
     minimizeButton.Image = minimizeImage
     minimizeButton.BorderSizePixel = 0
@@ -598,14 +590,17 @@ function Library:MinimizeButton(options)
     minimizeButton.MouseButton1Click:Connect(function()
         isMinimized = not isMinimized
         window.MainFrame.Visible = not isMinimized
+        if isMinimized then
+            window.MainFrame.Position = UDim2.new(0.5, -250, 0.5, -175) -- Reset vị trí khi ẩn
+        end
     end)
     
-    -- Nút Close
+    -- Nút Close (nằm ngoài GUI, bên cạnh Minimize)
     local closeButton = Instance.new("ImageButton")
     closeButton.Name = "CloseButton"
-    closeButton.Parent = window.MainFrame
-    closeButton.Size = UDim2.new(0, 30, 0, 30) -- Kích thước lớn hơn (30x30)
-    closeButton.Position = UDim2.new(1, -30, 0, 5) -- Điều chỉnh vị trí
+    closeButton.Parent = window.ScreenGui
+    closeButton.Size = UDim2.new(0, 30, 0, 30)
+    closeButton.Position = UDim2.new(0, 500, 0, 5) -- Vị trí bên phải ngoài GUI
     closeButton.BackgroundColor3 = color
     closeButton.Image = closeImage
     closeButton.BorderSizePixel = 0
@@ -623,11 +618,11 @@ function Library:MinimizeButton(options)
     end
     
     closeButton.MouseButton1Click:Connect(function()
-        window.ScreenGui:Destroy()
+        window.ScreenGui:Destroy() -- Giữ nguyên chức năng tắt hoàn toàn nếu cần
     end)
 end
 
--- Gán tên hàm để tương thích với script của bạn
+-- Gán tên hàm (giữ nguyên)
 Library.MakeWindow = Library.MakeWindow
 Library.MakeTab = Library.MakeTab
 Library.AddToggle = Library.AddToggle
@@ -636,5 +631,4 @@ Library.AddDropdown = Library.AddDropdown
 Library.AddSlider = Library.AddSlider
 Library.MinimizeButton = Library.MinimizeButton
 
--- Trả về thư viện
 return Library
