@@ -32,9 +32,9 @@ function Library:MakeWindow(options)
     local mainFrame = Instance.new("Frame")
     mainFrame.Name = "MainFrame"
     mainFrame.Parent = screenGui
-    mainFrame.Size = UDim2.new(0, 500, 0, 350)
+    mainFrame.Size = UDim2.new(0, 500, 0, 350) -- Kích thước giống Redz Hub
     mainFrame.Position = UDim2.new(0.5, -250, 0.5, -175)
-    mainFrame.BackgroundColor3 = Color3.fromRGB(30, 30, 30) -- Màu xám đậm giống Redz Hub
+    mainFrame.BackgroundColor3 = Color3.fromRGB(25, 25, 25) -- Màu nền xám đậm
     mainFrame.BorderSizePixel = 0
     
     -- Hiệu ứng mở GUI
@@ -72,26 +72,27 @@ function Library:MakeWindow(options)
     topBar.Name = "TopBar"
     topBar.Parent = mainFrame
     topBar.Size = UDim2.new(1, 0, 0, 30)
-    topBar.BackgroundColor3 = Color3.fromRGB(20, 20, 20) -- Màu đen đậm
+    topBar.BackgroundColor3 = Color3.fromRGB(15, 15, 15) -- Màu đen đậm
     topBar.BorderSizePixel = 0
     
     local titleLabel = Instance.new("TextLabel")
     titleLabel.Name = "Title"
     titleLabel.Parent = topBar
-    titleLabel.Size = UDim2.new(1, 0, 1, 0)
+    titleLabel.Size = UDim2.new(1, -60, 1, 0)
+    titleLabel.Position = UDim2.new(0, 5, 0, 0)
     titleLabel.Text = hub.Title or "Redz Hub"
-    titleLabel.TextColor3 = Color3.fromRGB(255, 50, 50) -- Màu đỏ
+    titleLabel.TextColor3 = Color3.fromRGB(255, 255, 255) -- Màu trắng
     titleLabel.BackgroundTransparency = 1
-    titleLabel.TextSize = 16
-    titleLabel.Font = Enum.Font.Gotham
-    titleLabel.TextXAlignment = Enum.TextXAlignment.Center
+    titleLabel.TextSize = 14
+    titleLabel.Font = Enum.Font.SourceSansBold
+    titleLabel.TextXAlignment = Enum.TextXAlignment.Left
     
     local tabContainer = Instance.new("Frame")
     tabContainer.Name = "TabContainer"
     tabContainer.Parent = mainFrame
     tabContainer.Size = UDim2.new(0, 120, 1, -30)
     tabContainer.Position = UDim2.new(0, 0, 0, 30)
-    tabContainer.BackgroundColor3 = Color3.fromRGB(20, 20, 20) -- Màu đen
+    tabContainer.BackgroundColor3 = Color3.fromRGB(15, 15, 15) -- Màu đen đậm
     tabContainer.BorderSizePixel = 0
     
     local contentContainer = Instance.new("Frame")
@@ -99,7 +100,7 @@ function Library:MakeWindow(options)
     contentContainer.Parent = mainFrame
     contentContainer.Size = UDim2.new(1, -120, 1, -30)
     contentContainer.Position = UDim2.new(0, 120, 0, 30)
-    contentContainer.BackgroundColor3 = Color3.fromRGB(40, 40, 40) -- Màu xám đậm
+    contentContainer.BackgroundColor3 = Color3.fromRGB(20, 20, 20) -- Màu xám đậm
     contentContainer.BorderSizePixel = 0
     
     local uiListLayout = Instance.new("UIListLayout")
@@ -121,17 +122,17 @@ function Library:MakeWindow(options)
         keyFrame.Parent = screenGui
         keyFrame.Size = UDim2.new(0, 250, 0, 150)
         keyFrame.Position = UDim2.new(0.5, -125, 0.5, -75)
-        keyFrame.BackgroundColor3 = Color3.fromRGB(30, 30, 30)
+        keyFrame.BackgroundColor3 = Color3.fromRGB(25, 25, 25)
         keyFrame.BorderSizePixel = 0
         
         local keyTitle = Instance.new("TextLabel")
         keyTitle.Parent = keyFrame
         keyTitle.Size = UDim2.new(1, 0, 0, 30)
         keyTitle.Text = key.Title or "Nhập Key"
-        keyTitle.TextColor3 = Color3.fromRGB(255, 50, 50)
+        keyTitle.TextColor3 = Color3.fromRGB(255, 255, 255)
         keyTitle.BackgroundTransparency = 1
-        keyTitle.TextSize = 16
-        keyTitle.Font = Enum.Font.Gotham
+        keyTitle.TextSize = 14
+        keyTitle.Font = Enum.Font.SourceSansBold
         keyTitle.TextXAlignment = Enum.TextXAlignment.Center
         
         local keyInput = Instance.new("TextBox")
@@ -140,19 +141,19 @@ function Library:MakeWindow(options)
         keyInput.Position = UDim2.new(0.1, 0, 0.3, 0)
         keyInput.Text = ""
         keyInput.PlaceholderText = "Nhập key..."
-        keyInput.TextColor3 = Color3.fromRGB(255, 50, 50)
-        keyInput.BackgroundColor3 = Color3.fromRGB(50, 50, 50)
+        keyInput.TextColor3 = Color3.fromRGB(255, 255, 255)
+        keyInput.BackgroundColor3 = Color3.fromRGB(40, 40, 40)
         keyInput.BorderSizePixel = 0
-        keyInput.Font = Enum.Font.Gotham
+        keyInput.Font = Enum.Font.SourceSans
         
         local keyButton = Instance.new("TextButton")
         keyButton.Parent = keyFrame
         keyButton.Size = UDim2.new(0.4, 0, 0, 30)
         keyButton.Position = UDim2.new(0.3, 0, 0.7, 0)
         keyButton.Text = "Xác nhận"
-        keyButton.TextColor3 = Color3.fromRGB(255, 50, 50)
-        keyButton.BackgroundColor3 = Color3.fromRGB(70, 20, 20)
-        keyButton.Font = Enum.Font.Gotham
+        keyButton.TextColor3 = Color3.fromRGB(255, 255, 255)
+        keyButton.BackgroundColor3 = Color3.fromRGB(40, 40, 40)
+        keyButton.Font = Enum.Font.SourceSans
         keyButton.TextSize = 14
         
         keyButton.MouseButton1Click:Connect(function()
@@ -197,23 +198,23 @@ function Library:MakeTab(options)
     local tabButton = Instance.new("TextButton")
     tabButton.Name = name .. "Button"
     tabButton.Parent = options.Window.TabContainer
-    tabButton.Size = UDim2.new(1, -10, 0, 40)
-    tabButton.Position = UDim2.new(0, 5, 0, 5 + (#options.Window.Tabs * 45))
+    tabButton.Size = UDim2.new(1, -10, 0, 30)
+    tabButton.Position = UDim2.new(0, 5, 0, 5 + (#options.Window.Tabs * 35))
     tabButton.Text = name
-    tabButton.TextColor3 = Color3.fromRGB(255, 50, 50) -- Màu đỏ
-    tabButton.BackgroundColor3 = Color3.fromRGB(50, 50, 50) -- Màu xám đậm
-    tabButton.Font = Enum.Font.Gotham
+    tabButton.TextColor3 = Color3.fromRGB(255, 255, 255) -- Màu trắng
+    tabButton.BackgroundColor3 = Color3.fromRGB(30, 30, 30) -- Màu xám đậm
+    tabButton.Font = Enum.Font.SourceSans
     tabButton.TextSize = 14
     tabButton.BorderSizePixel = 0
     
-    local uiCorner = Instance.new("UICorner") -- Thêm viền tròn
+    local uiCorner = Instance.new("UICorner")
     uiCorner.CornerRadius = UDim.new(0, 5)
     uiCorner.Parent = tabButton
     
     -- Thêm hiệu ứng hover
     local originalColor = tabButton.BackgroundColor3
     tabButton.MouseEnter:Connect(function()
-        tabButton.BackgroundColor3 = Color3.fromRGB(70, 70, 70)
+        tabButton.BackgroundColor3 = Color3.fromRGB(50, 50, 50)
     end)
     tabButton.MouseLeave:Connect(function()
         tabButton.BackgroundColor3 = originalColor
@@ -227,7 +228,7 @@ function Library:MakeTab(options)
     tabFrame.Visible = false
     tabFrame.ScrollBarThickness = 5
     tabFrame.CanvasSize = UDim2.new(0, 0, 0, 0) -- Sẽ tự động điều chỉnh
-    tabFrame.ScrollBarImageColor3 = Color3.fromRGB(255, 50, 50)
+    tabFrame.ScrollBarImageColor3 = Color3.fromRGB(100, 100, 100)
     
     local uiListLayout = Instance.new("UIListLayout")
     uiListLayout.Parent = tabFrame
@@ -285,33 +286,40 @@ function Library:AddToggle(tab, options)
     toggleFrame.Name = name
     toggleFrame.Parent = tab
     toggleFrame.Size = UDim2.new(1, -20, 0, 30)
-    toggleFrame.BackgroundTransparency = 1
+    toggleFrame.BackgroundColor3 = Color3.fromRGB(30, 30, 30)
+    toggleFrame.BorderSizePixel = 0
+    
+    local uiCorner = Instance.new("UICorner")
+    uiCorner.CornerRadius = UDim.new(0, 5)
+    uiCorner.Parent = toggleFrame
     
     local toggleLabel = Instance.new("TextLabel")
     toggleLabel.Parent = toggleFrame
     toggleLabel.Size = UDim2.new(0.8, 0, 1, 0)
+    toggleLabel.Position = UDim2.new(0, 10, 0, 0)
     toggleLabel.Text = name
-    toggleLabel.TextColor3 = Color3.fromRGB(255, 50, 50)
+    toggleLabel.TextColor3 = Color3.fromRGB(255, 255, 255)
     toggleLabel.BackgroundTransparency = 1
-    toggleLabel.Font = Enum.Font.Gotham
+    toggleLabel.Font = Enum.Font.SourceSans
     toggleLabel.TextSize = 14
+    toggleLabel.TextXAlignment = Enum.TextXAlignment.Left
     
     local toggleButton = Instance.new("TextButton")
     toggleButton.Parent = toggleFrame
     toggleButton.Size = UDim2.new(0, 20, 0, 20)
-    toggleButton.Position = UDim2.new(0.85, 0, 0.5, -10)
-    toggleButton.BackgroundColor3 = default and Color3.fromRGB(0, 255, 0) or Color3.fromRGB(255, 0, 0)
+    toggleButton.Position = UDim2.new(1, -30, 0.5, -10)
+    toggleButton.BackgroundColor3 = default and Color3.fromRGB(0, 255, 0) or Color3.fromRGB(100, 100, 100)
     toggleButton.Text = ""
     toggleButton.BorderSizePixel = 0
     
-    local uiCorner = Instance.new("UICorner")
-    uiCorner.CornerRadius = UDim.new(0, 5)
-    uiCorner.Parent = toggleButton
+    local uiCornerButton = Instance.new("UICorner")
+    uiCornerButton.CornerRadius = UDim.new(1, 0) -- Hình tròn
+    uiCornerButton.Parent = toggleButton
     
     local state = default
     toggleButton.MouseButton1Click:Connect(function()
         state = not state
-        toggleButton.BackgroundColor3 = state and Color3.fromRGB(0, 255, 0) or Color3.fromRGB(255, 0, 0)
+        toggleButton.BackgroundColor3 = state and Color3.fromRGB(0, 255, 0) or Color3.fromRGB(100, 100, 100)
         callback(state)
     end)
     
@@ -331,11 +339,10 @@ function Library:AddButton(tab, options)
     button.Name = name
     button.Parent = tab
     button.Size = UDim2.new(1, -20, 0, 30)
-    button.Position = UDim2.new(0, 10, 0, 0)
     button.Text = name
-    button.TextColor3 = Color3.fromRGB(255, 50, 50)
-    button.BackgroundColor3 = Color3.fromRGB(70, 20, 20) -- Màu đỏ đậm
-    button.Font = Enum.Font.Gotham
+    button.TextColor3 = Color3.fromRGB(255, 255, 255)
+    button.BackgroundColor3 = Color3.fromRGB(30, 30, 30)
+    button.Font = Enum.Font.SourceSans
     button.TextSize = 14
     button.BorderSizePixel = 0
     
@@ -346,13 +353,15 @@ function Library:AddButton(tab, options)
     -- Thêm hiệu ứng hover
     local originalColor = button.BackgroundColor3
     button.MouseEnter:Connect(function()
-        button.BackgroundColor3 = Color3.fromRGB(90, 40, 40)
+        button.BackgroundColor3 = Color3.fromRGB(50, 50, 50)
     end)
     button.MouseLeave:Connect(function()
         button.BackgroundColor3 = originalColor
     end)
     
-    button.MouseButton1Click:Connect(callback)
+    button.MouseButton1Click:Connect(function()
+        callback()
+    end)
     
     return button
 end
@@ -372,41 +381,33 @@ function Library:AddDropdown(tab, options)
     dropdownFrame.Name = name
     dropdownFrame.Parent = tab
     dropdownFrame.Size = UDim2.new(1, -20, 0, 30)
-    dropdownFrame.BackgroundTransparency = 1
+    dropdownFrame.BackgroundColor3 = Color3.fromRGB(30, 30, 30)
+    dropdownFrame.BorderSizePixel = 0
+    
+    local uiCorner = Instance.new("UICorner")
+    uiCorner.CornerRadius = UDim.new(0, 5)
+    uiCorner.Parent = dropdownFrame
     
     local dropdownButton = Instance.new("TextButton")
     dropdownButton.Parent = dropdownFrame
     dropdownButton.Size = UDim2.new(1, 0, 1, 0)
     dropdownButton.Text = default
-    dropdownButton.TextColor3 = Color3.fromRGB(255, 50, 50)
-    dropdownButton.BackgroundColor3 = Color3.fromRGB(70, 20, 20)
-    dropdownButton.Font = Enum.Font.Gotham
+    dropdownButton.TextColor3 = Color3.fromRGB(255, 255, 255)
+    dropdownButton.BackgroundTransparency = 1
+    dropdownButton.Font = Enum.Font.SourceSans
     dropdownButton.TextSize = 14
     dropdownButton.BorderSizePixel = 0
     
-    local uiCorner = Instance.new("UICorner")
-    uiCorner.CornerRadius = UDim.new(0, 5)
-    uiCorner.Parent = dropdownButton
-    
-    -- Thêm hiệu ứng hover
-    local originalColor = dropdownButton.BackgroundColor3
-    dropdownButton.MouseEnter:Connect(function()
-        dropdownButton.BackgroundColor3 = Color3.fromRGB(90, 40, 40)
-    end)
-    dropdownButton.MouseLeave:Connect(function()
-        dropdownButton.BackgroundColor3 = originalColor
-    end)
-    
     local dropdownList = Instance.new("ScrollingFrame")
     dropdownList.Parent = dropdownFrame
-    dropdownList.Size = UDim2.new(1, 0, 0, math.min(#opts * 30, 120)) -- Giới hạn chiều cao tối đa
+    dropdownList.Size = UDim2.new(1, 0, 0, math.min(#opts * 30, 120))
     dropdownList.Position = UDim2.new(0, 0, 1, 0)
-    dropdownList.BackgroundColor3 = Color3.fromRGB(50, 50, 50)
+    dropdownList.BackgroundColor3 = Color3.fromRGB(30, 30, 30)
     dropdownList.Visible = false
     dropdownList.BorderSizePixel = 0
     dropdownList.ScrollBarThickness = 5
     dropdownList.CanvasSize = UDim2.new(0, 0, 0, #opts * 30)
-    dropdownList.ScrollBarImageColor3 = Color3.fromRGB(255, 50, 50)
+    dropdownList.ScrollBarImageColor3 = Color3.fromRGB(100, 100, 100)
     
     local uiListLayout = Instance.new("UIListLayout")
     uiListLayout.Parent = dropdownList
@@ -417,9 +418,9 @@ function Library:AddDropdown(tab, options)
         optionButton.Size = UDim2.new(1, -10, 0, 30)
         optionButton.Position = UDim2.new(0, 5, 0, (i-1) * 30)
         optionButton.Text = option
-        optionButton.TextColor3 = Color3.fromRGB(255, 50, 50)
-        optionButton.BackgroundColor3 = Color3.fromRGB(70, 20, 20)
-        optionButton.Font = Enum.Font.Gotham
+        optionButton.TextColor3 = Color3.fromRGB(255, 255, 255)
+        optionButton.BackgroundColor3 = Color3.fromRGB(30, 30, 30)
+        optionButton.Font = Enum.Font.SourceSans
         optionButton.TextSize = 14
         optionButton.BorderSizePixel = 0
         
@@ -430,7 +431,7 @@ function Library:AddDropdown(tab, options)
         -- Hiệu ứng hover cho option button
         local optOriginalColor = optionButton.BackgroundColor3
         optionButton.MouseEnter:Connect(function()
-            optionButton.BackgroundColor3 = Color3.fromRGB(90, 40, 40)
+            optionButton.BackgroundColor3 = Color3.fromRGB(50, 50, 50)
         end)
         optionButton.MouseLeave:Connect(function()
             optionButton.BackgroundColor3 = optOriginalColor
@@ -450,26 +451,133 @@ function Library:AddDropdown(tab, options)
     return dropdownFrame
 end
 
--- Hàm MinimizeButton (và nút Close)
+-- Hàm thêm slider (dựa trên yêu cầu từ hình ảnh)
+function Library:AddSlider(tab, options)
+    if not tab or not options then
+        error("Tab hoặc Options không được cung cấp cho AddSlider")
+    end
+
+    local name = options.Name or "Slider"
+    local min = options.Min or 0
+    local max = options.Max or 100
+    local default = options.Default or min
+    local callback = options.Callback or function() end
+    
+    local sliderFrame = Instance.new("Frame")
+    sliderFrame.Name = name
+    sliderFrame.Parent = tab
+    sliderFrame.Size = UDim2.new(1, -20, 0, 30)
+    sliderFrame.BackgroundColor3 = Color3.fromRGB(30, 30, 30)
+    sliderFrame.BorderSizePixel = 0
+    
+    local uiCorner = Instance.new("UICorner")
+    uiCorner.CornerRadius = UDim.new(0, 5)
+    uiCorner.Parent = sliderFrame
+    
+    local sliderLabel = Instance.new("TextLabel")
+    sliderLabel.Parent = sliderFrame
+    sliderLabel.Size = UDim2.new(0.5, 0, 1, 0)
+    sliderLabel.Position = UDim2.new(0, 10, 0, 0)
+    sliderLabel.Text = name
+    sliderLabel.TextColor3 = Color3.fromRGB(255, 255, 255)
+    sliderLabel.BackgroundTransparency = 1
+    sliderLabel.Font = Enum.Font.SourceSans
+    sliderLabel.TextSize = 14
+    sliderLabel.TextXAlignment = Enum.TextXAlignment.Left
+    
+    local sliderTrack = Instance.new("Frame")
+    sliderTrack.Parent = sliderFrame
+    sliderTrack.Size = UDim2.new(0.4, 0, 0, 5)
+    sliderTrack.Position = UDim2.new(0.55, 0, 0.5, -2.5)
+    sliderTrack.BackgroundColor3 = Color3.fromRGB(50, 50, 50)
+    sliderTrack.BorderSizePixel = 0
+    
+    local uiCornerTrack = Instance.new("UICorner")
+    uiCornerTrack.CornerRadius = UDim.new(1, 0)
+    uiCornerTrack.Parent = sliderTrack
+    
+    local sliderFill = Instance.new("Frame")
+    sliderFill.Parent = sliderTrack
+    sliderFill.Size = UDim2.new((default - min) / (max - min), 0, 1, 0)
+    sliderFill.BackgroundColor3 = Color3.fromRGB(0, 120, 255)
+    sliderFill.BorderSizePixel = 0
+    
+    local uiCornerFill = Instance.new("UICorner")
+    uiCornerFill.CornerRadius = UDim.new(1, 0)
+    uiCornerFill.Parent = sliderFill
+    
+    local sliderValue = Instance.new("TextLabel")
+    sliderValue.Parent = sliderFrame
+    sliderValue.Size = UDim2.new(0, 30, 1, 0)
+    sliderValue.Position = UDim2.new(1, -40, 0, 0)
+    sliderValue.Text = tostring(default)
+    sliderValue.TextColor3 = Color3.fromRGB(255, 255, 255)
+    sliderValue.BackgroundTransparency = 1
+    sliderValue.Font = Enum.Font.SourceSans
+    sliderValue.TextSize = 14
+    
+    local sliderButton = Instance.new("TextButton")
+    sliderButton.Parent = sliderTrack
+    sliderButton.Size = UDim2.new(0, 10, 0, 10)
+    sliderButton.Position = UDim2.new((default - min) / (max - min), -5, 0, -2.5)
+    sliderButton.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+    sliderButton.BorderSizePixel = 0
+    sliderButton.Text = ""
+    
+    local uiCornerButton = Instance.new("UICorner")
+    uiCornerButton.CornerRadius = UDim.new(1, 0)
+    uiCornerButton.Parent = sliderButton
+    
+    local dragging = false
+    sliderButton.InputBegan:Connect(function(input)
+        if input.UserInputType == Enum.UserInputType.MouseButton1 then
+            dragging = true
+        end
+    end)
+    sliderButton.InputEnded:Connect(function(input)
+        if input.UserInputType == Enum.UserInputType.MouseButton1 then
+            dragging = false
+        end
+    end)
+    UserInputService.InputChanged:Connect(function(input)
+        if dragging and input.UserInputType == Enum.UserInputType.MouseMovement then
+            local mouseX = input.Position.X
+            local trackAbsPos = sliderTrack.AbsolutePosition.X
+            local trackAbsSize = sliderTrack.AbsoluteSize.X
+            local relativePos = math.clamp((mouseX - trackAbsPos) / trackAbsSize, 0, 1)
+            local value = min + (max - min) * relativePos
+            value = math.floor(value + 0.5) -- Làm tròn
+            sliderFill.Size = UDim2.new(relativePos, 0, 1, 0)
+            sliderButton.Position = UDim2.new(relativePos, -5, 0, -2.5)
+            sliderValue.Text = tostring(value)
+            callback(value)
+        end
+    end)
+    
+    return sliderFrame
+end
+
+-- Hàm MinimizeButton (và nút Close) với kích thước lớn hơn
 function Library:MinimizeButton(options)
     if not options or not options.Window then
         error("Options hoặc Window không được cung cấp cho MinimizeButton")
     end
 
-    local minimizeImage = options.MinimizeImage or "http://www.roblox.com/asset/?id=6023426926" -- Dấu gạch ngang
-    local closeImage = options.CloseImage or "http://www.roblox.com/asset/?id=6023426915" -- Dấu X
-    local size = options.Size or {25, 25}
-    local color = options.Color or Color3.fromRGB(70, 20, 20)
-    local corner = options.Corner or false
+    local minimizeImage = options.Image or "http://www.roblox.com/asset/?id=6023426926" -- Hình minimize
+    local closeImage = "http://www.roblox.com/asset/?id=6023426915" -- Hình close
+    local size = options.Size or {30, 30} -- Kích thước lớn hơn (30x30)
+    local color = options.Color or Color3.fromRGB(70, 20, 20) -- Màu đỏ đậm giống Redz Hub
+    local corner = options.Corner or true
     local stroke = options.Stroke or false
     local strokeColor = options.StrokeColor or Color3.fromRGB(255, 0, 0)
+    local window = options.Window
     
     -- Nút Minimize
     local minimizeButton = Instance.new("ImageButton")
     minimizeButton.Name = "MinimizeButton"
-    minimizeButton.Parent = options.Window.MainFrame
+    minimizeButton.Parent = window.MainFrame
     minimizeButton.Size = UDim2.new(0, size[1], 0, size[2])
-    minimizeButton.Position = UDim2.new(1, -55, 0, 5)
+    minimizeButton.Position = UDim2.new(1, -65, 0, 5) -- Điều chỉnh vị trí để phù hợp với kích thước lớn hơn
     minimizeButton.BackgroundColor3 = color
     minimizeButton.Image = minimizeImage
     minimizeButton.BorderSizePixel = 0
@@ -489,15 +597,15 @@ function Library:MinimizeButton(options)
     local isMinimized = false
     minimizeButton.MouseButton1Click:Connect(function()
         isMinimized = not isMinimized
-        options.Window.MainFrame.Visible = not isMinimized
+        window.MainFrame.Visible = not isMinimized
     end)
     
     -- Nút Close
     local closeButton = Instance.new("ImageButton")
     closeButton.Name = "CloseButton"
-    closeButton.Parent = options.Window.MainFrame
-    closeButton.Size = UDim2.new(0, 20, 0, 20)
-    closeButton.Position = UDim2.new(1, -25, 0, 5)
+    closeButton.Parent = window.MainFrame
+    closeButton.Size = UDim2.new(0, 30, 0, 30) -- Kích thước lớn hơn (30x30)
+    closeButton.Position = UDim2.new(1, -30, 0, 5) -- Điều chỉnh vị trí
     closeButton.BackgroundColor3 = color
     closeButton.Image = closeImage
     closeButton.BorderSizePixel = 0
@@ -515,7 +623,7 @@ function Library:MinimizeButton(options)
     end
     
     closeButton.MouseButton1Click:Connect(function()
-        options.Window.ScreenGui:Destroy()
+        window.ScreenGui:Destroy()
     end)
 end
 
@@ -525,6 +633,7 @@ Library.MakeTab = Library.MakeTab
 Library.AddToggle = Library.AddToggle
 Library.AddButton = Library.AddButton
 Library.AddDropdown = Library.AddDropdown
+Library.AddSlider = Library.AddSlider
 Library.MinimizeButton = Library.MinimizeButton
 
 -- Trả về thư viện
